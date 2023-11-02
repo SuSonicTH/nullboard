@@ -1640,6 +1640,7 @@
 		<a href=# class=teaser><i>&equiv;</i><u>&#x2714;</u></a>
 		<div class=bulk>
 			<a href=# class=add-board>Add new board...</a>
+			<a href=# class=new-board>Add new board from Jira...</a>
 
 			<div class=boards draggable=false>
 				<!-- here'll be boards -->
@@ -1709,7 +1710,6 @@
 						<a href=# class='undo-board'>Undo</a>
 						<a href=# class='redo-board'>Redo</a>
 						<a href=# class='add-list'>+ List</a>
-						<a href=# class='new-board'>+ new board</a>
 					</div>
 				</div>
 			</div>
@@ -4711,6 +4711,12 @@
 		return false;
 	});
 
+	$('.config').on('click', '.new-board', function () {
+		var items = prompt("Please paste jira items from refinement page, no editing neccessarry", "");
+		createNewBoard(items);
+		return false;
+	});
+
 	$('.config').on('click', '.load-board', function () {
 
 		var board_id = parseInt($(this).attr('board_id'));
@@ -4743,12 +4749,6 @@
 	//
 	$('.wrap').on('click', '.board .add-list', function () {
 		addList();
-		return false;
-	});
-
-	$('.wrap').on('click', '.board .new-board', function () {
-		var items = prompt("Please paste jira items from refinement page, no editing neccessarry", "");
-		createNewBoard(items);
 		return false;
 	});
 
