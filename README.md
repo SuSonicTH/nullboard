@@ -1,5 +1,23 @@
 # Nullboard
 
+This is a fork of [Nullboard](https://github.com/apankrat/nullboard) for refinements in my agile team.
+
+changes done to the original:
+* 7 lists for our refinement (Numbers, Items, far left, left, center, right, far right)
+* dark mode by default
+* changed list and font sizes to fit all columns on 1080p
+* default font 'maven Pro'
+* shows links by default (not only on ctrl click)
+* replaces our jira keys A4A1-12345 with a clickable link to jira
+* "add Items" option on the board to add multiple, LineFeed separated items, to a new board named MotuBan <timestamp>.
+
+screenshot:
+![Nullboard](images/motuban.png)
+
+Original readme below
+
+---
+
 Nullboard is a minimalist take on a kanban board / a task list manager, designed to be compact, readable and quick in use.
 
 https://nullboard.io/preview
