@@ -1709,6 +1709,7 @@
 						<a href=# class='undo-board'>Undo</a>
 						<a href=# class='redo-board'>Redo</a>
 						<a href=# class='add-list'>+ List</a>
+						<a href=# class='new-board'>+ new board</a>
 					</div>
 				</div>
 			</div>
@@ -3361,8 +3362,8 @@
 			'{"format":20190412,"id":1698366003500,"revision":1,"title":"MotUban",' +
 			'"lists":[{"title":"Numbers","notes":[{"text":"1","raw":true,"min":false},{"text":"2","raw":true,"min":false},{"text":"3","raw":true,"min":false},{"text":"5","raw":true,"min":false},{"text":"8","raw":true,"min":false},{"text":"13","raw":true,"min":false}]},' +
 			'{"title":"Items","notes":[' +
-			'{"text":"A4A1-16685 - Direct Link Billing Requests TO DO"},' +
-			'{"text":"A4A1-16641 - IOD MVNOs Billing Changes October 2023 IN PROGRESS"}' +
+			//'{"text":"Text for Item 1"},' +
+			//'{"text":"Text for Item 2"}' +
 			']},' +
 			'{"title":"far left","notes":[]},{"title":"left","notes":[]},{"title":"center","notes":[]},{"title":"right","notes":[]},{"title":"far right","notes":[]}]}';
 
@@ -3378,6 +3379,63 @@
 		NB.storage.setActiveBoard(demo.id);
 
 		return Object.assign(new Board(), demo);
+	}
+
+	function createNewBoard(itemsText) {
+		var items = itemsText.replace("\\", "\\\\").split(/\r?\n/);
+		var i;
+		var collected = "";
+		for (i = 0; i < items.length; i++) {
+			var item = items[i].trim();
+			if (item != "") {
+				if (i > 0) {
+					collected = collected + ","
+				}
+				collected = collected + '{"text":"' + items[i] + '"}'
+			}
+		}
+
+		var blob =
+			'{"format":20190412,"id":1698366003512,"revision":1,"title":"MotUban ' + getFormattedDate() + '",' +
+			'"lists":[{"title":"Numbers","notes":[{"text":"1","raw":true,"min":false},{"text":"2","raw":true,"min":false},{"text":"3","raw":true,"min":false},{"text":"5","raw":true,"min":false},{"text":"8","raw":true,"min":false},{"text":"13","raw":true,"min":false}]},' +
+			'{"title":"Items","notes":[' +
+			collected +
+			']},' +
+			'{"title":"far left","notes":[]},{"title":"left","notes":[]},{"title":"center","notes":[]},{"title":"right","notes":[]},{"title":"far right","notes":[]}]}';
+
+		console.log(blob);
+		var newBoard = JSON.parse(blob);
+
+		if (!newBoard)
+			return false;
+
+		newBoard.id = +new Date();
+		newBoard.revision = 0;
+
+		NB.storage.saveBoard(newBoard);
+		NB.storage.setActiveBoard(newBoard.id);
+
+		Object.assign(new Board(), newBoard);
+		openBoard(newBoard.id)
+	}
+
+	function getFormattedDate() {
+		var date = new Date();
+
+		var month = date.getMonth() + 1;
+		var day = date.getDate();
+		var hour = date.getHours();
+		var min = date.getMinutes();
+		var sec = date.getSeconds();
+
+		month = (month < 10 ? "0" : "") + month;
+		day = (day < 10 ? "0" : "") + day;
+		hour = (hour < 10 ? "0" : "") + hour;
+		min = (min < 10 ? "0" : "") + min;
+		sec = (sec < 10 ? "0" : "") + sec;
+
+		var str = date.getFullYear() + "-" + month + "-" + day + " " + hour + ":" + min + ":" + sec;
+		return str;
 	}
 
 	/*
@@ -4685,6 +4743,12 @@
 	//
 	$('.wrap').on('click', '.board .add-list', function () {
 		addList();
+		return false;
+	});
+
+	$('.wrap').on('click', '.board .new-board', function () {
+		var items = prompt("Please paste jira items from refinement page, no editing neccessarry", "");
+		createNewBoard(items);
 		return false;
 	});
 
