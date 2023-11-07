@@ -1,6 +1,7 @@
 # Nullboard
 
 This is a fork of [Nullboard](https://github.com/apankrat/nullboard) for refinements in my agile team.
+It can be browsed directly from the [repository](https://htmlpreview.github.io/?https://github.com/SuSonicTH/nullboard/blob/master/nullboard.html)
 
 changes done to the original:
 * 7 lists for our refinement (Numbers, Items, far left, left, center, right, far right)
