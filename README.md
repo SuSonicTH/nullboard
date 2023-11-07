@@ -7,7 +7,7 @@ changes done to the original:
 * 7 lists for our refinement (Numbers, Items, far left, left, center, right, far right)
 * dark mode by default
 * changed list and font sizes to fit all columns on 1080p
-* default font 'maven Pro'
+* added JetBrains font and made it the default
 * shows links by default (not only on ctrl click)
 * replaces our jira keys A4A1-12345 with a clickable link to jira
 * "Add new Board from Jira..." option on the to create a new board with the default columns ad add multiple, LineFeed separated items, to a the board. the new board is named MotUban <timestamp>.
