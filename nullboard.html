@@ -126,14 +126,14 @@
 		}
 
 		@font-face {
-			font-family: 'JetBrainsMono';
+			font-family: 'f-jet-brains';
 			font-weight: 400;
 			font-style: normal;
 			src: url('extras/JetBrainsMono-Regular.woff2') format('woff2');
 		}
 
 		@font-face {
-			font-family: 'JetBrainsMono';
+			font-family: 'f-jet-brains';
 			font-weight: 500;
 			font-style: normal;
 			src: url('extras/JetBrainsMono-Medium.woff2') format('woff2');
@@ -201,8 +201,8 @@
 			/* .list width */
 		}
 
-		html.JetBrainsMono {
-			--ff: JetBrainsMono, sans-serif;
+		html.f-jet-brains {
+			--ff: f-jet-brains, sans-serif;
 			--fs: 12;
 			--fs-head: 13;
 			--lw: calc(20 * var(--fs) + 47);
@@ -1660,6 +1660,7 @@
 					<a href="#" class="switch-font" font="open-sans">Use Open Sans</a>
 					<a href="#" class="switch-font" font="segoe-ui">Use Segoe UI</a>
 					<a href="#" class="switch-font" font="maven-pro">Use Maven Pro</a>
+					<a href="#" class="switch-font" font="jet-brains">Use JetBrains</a>
 
 					<div class='f-prefs break'>
 						<table>
@@ -1824,7 +1825,7 @@
 		this.verSeen = null;           // latest codeVersion they saw the changelog for
 
 		this.maxUndo = 50;             // board revisions to keep
-		this.fontName = 'maven-pro';  // font-family
+		this.fontName = 'jet-brains';  // font-family
 		this.fontSize = 12.5;           // font-size
 		this.lineHeight = null;           // line-height
 		this.listWidth = 257;            // list-width
