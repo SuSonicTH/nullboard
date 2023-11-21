@@ -3383,7 +3383,7 @@
 	}
 
 	function createNewBoard(itemsText) {
-		var items = itemsText.replace("\\", "\\\\").split(/\r?\n/);
+		var items = itemsText.replace(/\\/g, "\\\\").replace(/"/g, "\\\"").split(/\r?\n/);
 		var i;
 		var collected = "";
 		for (i = 0; i < items.length; i++) {
@@ -4713,7 +4713,7 @@
 	});
 
 	$('.config').on('click', '.new-board', function () {
-		var items = prompt("Please paste jira items from refinement page, no editing neccessarry", "");
+		var items = prompt("Please paste jira items from refinement page, no editing necessary", "");
 		createNewBoard(items);
 		return false;
 	});
